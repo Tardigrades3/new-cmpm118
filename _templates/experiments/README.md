@@ -1,10 +1,10 @@
-ves in its own numbered folder under `experiments/`. This file explains how to start one, how runs are stored, and how to keep the index up to date.
+Each experiment lives in its own numbered folder under `experiments/`. This file explains how to start one, how runs are stored, and how to keep the index up to date.
 
 ## Starting a new experiment
 
 1. Pick the next number from the index table below.
 2. Copy the template and rename it:
-   ```
+    ``
    cp -r _templates/experiment experiments/004-short-name
    ```
 3. Open `experiments/004-short-name/config.yaml` and update `experiment.name` and `experiment.description`.

@@ -10,23 +10,12 @@ The goal is simple. Anyone on the team should be able to find any result, see ex
 repo/
 ├── README.md              what this project is and how to get started
 ├── RULES.md               this file
-├── LICENSE
-├── CITATION.cff           how to cite the work
-├── environment.yml        pinned dependencies (or pyproject.toml / requirements.txt)
-├── Makefile               short commands for common tasks
 ├── .gitignore
-├── .pre-commit-config.yaml
-├── data/
-│   ├── raw/               never edited by hand
-│   ├── interim/
-│   └── processed/
 ├── shared/                code used by more than one experiment
 ├── experiments/           one numbered folder per experiment (see section 4)
 │   └── README.md          guide and index of all experiments
 ├── _templates/
 │   └── experiment/        copy this to start a new experiment
-├── notebooks/             exploration only
-├── tests/
 ├── docs/                  methods notes, decisions, writeups
 ├── paper/                 drafts, if we write in the repo
 └── .github/
@@ -43,21 +32,18 @@ Where things go:
 
 ## 2. Branches
 
-Keep it simple. We do not use Gitflow.
-
+Branch names loosely follow the following naming conventions. Most branches will have an owner name who created the branch and whether it is a general feature or experiment and its name as follows. 
 | Branch | Purpose |
 |--------|---------|
 | `main` | Always works, always reproducible. Protected. Changes only come in through PRs. |
-| `feature/<short-name>` | New shared code, tooling, or analysis. Example: `feature/f1-metric` |
-| `exp/<NNN-short-name>` | One experiment. The name matches the folder. Example: `exp/004-longer-context` |
-| `fix/<short-name>` | Bug fixes. Example: `fix/seed-not-applied` |
-| `paper/<venue>` | Optional. Freezes the exact code behind a submission. |
+| `<owner-name>/feature/<short-name>` | New shared code, tooling, or analysis. Example: `aran/feature/f1-metric` |
+| `<owner-name>/exp/<NNN-short-name>` | One experiment. The name matches the folder. Example: `aran/exp/004-longer-context` |
 
 Rules:
 
 - Branch from `main` and keep branches short lived.
-- One PR adds or changes one experiment. Do not bundle several experiments into one PR.
-- If an experiment fails or gets abandoned, still merge a short README that explains the dead end. Deleting the branch with nothing written down wastes the work.
+- One PR adds or changes one experiment or one feature. Do not bundle several experiments into one PR.
+- If an experiment fails or gets abandoned, still merge a short README that explains the dead end, also moving the folder into the `archived/` folder. Deleting the branch with nothing written down wastes the work.
 - Tag milestones and paper submissions (`v0.1-workshop`, `v1.0-submission`) so we can return to the exact state behind a result.
 
 ## 3. Pull requests

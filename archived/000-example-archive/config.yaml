@@ -1,0 +1,22 @@
+# Base config for this experiment.
+# Every run saves a merged copy of this file in its own results folder,
+# so edit this to change defaults and use --set for one-off changes.
+ 
+experiment:
+  name: "000-template"
+  description: "One line on what this experiment tests."
+ 
+seed: 42
+ 
+data:
+  path: "data/processed/train.csv"
+  val_split: 0.2
+ 
+model:
+  name: "linear"
+  hidden_size: 64
+ 
+train:
+  lr: 0.001
+  epochs: 20
+  batch_size: 32
