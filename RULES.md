@@ -42,21 +42,17 @@ Branch names loosely follow the following naming conventions. Most branches will
 Rules:
 
 - Branch from `main` and keep branches short lived.
+- Do your best not to directly commit to main.
 - One PR adds or changes one experiment or one feature. Do not bundle several experiments into one PR.
 - If an experiment fails or gets abandoned, still merge a short README that explains the dead end, also moving the folder into the `archived/` folder. Deleting the branch with nothing written down wastes the work.
-- Tag milestones and paper submissions (`v0.1-workshop`, `v1.0-submission`) so we can return to the exact state behind a result.
+- Tag milestones and paper submissions (`v0.1-workshop`, `v1.0-submission`) so we can return to the exact state behind a result(command is git tag v0.1-submission). This command assigns a tag to a commit that we can reference later. 
 
 ## 3. Pull requests
 
 - Keep PRs small and focused.
-- Every PR needs at least one reviewer before merging.
 - We squash-merge, so `main` has one clean commit per PR.
-- Fill in the PR template. Reviewers should not have to guess what changed or how to check it.
-- All automated checks must pass before merging.
+- Fill in the PR template. 
 
-Commit messages are short and in the imperative: "Add F1 metric", "Fix seed handling". Avoid messages like "stuff" or "updates".
-
-The PR template lives at `.github/pull_request_template.md`:
 
 ```
 ## What changed
@@ -124,31 +120,7 @@ To run one, go into its folder and use `python run.py`. Use `--set key=value` fo
 - Small summary files (`metrics.json`, a few figures) are fine to commit.
 - Never commit secrets, API keys, or `.env` files. If one slips in, rotate the key. Deleting the commit is not enough.
 
-## 7. Code style and tooling
-
-- Formatting and linting are handled by tools (ruff and black), not by arguing in reviews.
-- Pre-commit hooks run these locally. Install them once with `pre-commit install`.
-- Clear notebook outputs before committing (`nbstripout` handles this automatically), so diffs stay readable.
-- Add a test when you add shared code. Tests should run fast, using a tiny sample of data.
-
-## 8. GitHub Actions
-
-CI runs on every PR and stays light, since full training does not fit on free runners.
-
-What runs automatically:
-
-- Lint and format check
-- Unit tests on small sample data
-- Check that the environment installs cleanly
-- Check that notebooks have no stored outputs
-
-What does not run in CI:
-
-- Full training runs. These happen on our own machines or cluster. If we add a self-hosted runner, it is triggered manually with `workflow_dispatch`.
-
-Branch protection on `main` requires these checks to pass before merging.
-
-## 9. Quick checklist before opening a PR
+## 7. Quick checklist before opening a PR
 
 - [ ] Branch name follows the convention above
 - [ ] Code runs from a clean checkout using the pinned environment
@@ -157,6 +129,6 @@ Branch protection on `main` requires these checks to pass before merging.
 - [ ] No data, checkpoints, or secrets are in the diff
 - [ ] PR template is filled in
 
-## 10. Changing these rules
+## 8. Changing these rules
 
 Open a PR that edits this file and explain why. Rules that nobody follows should be fixed or removed, not ignored.
