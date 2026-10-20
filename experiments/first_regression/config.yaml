@@ -1,0 +1,37 @@
+# Base config for this experiment.
+# Every run saves a merged copy of this file in its own results folder,
+# so edit this to change defaults and use --set for one-off changes.
+
+experiment:
+  name: "first_regression"
+  description: "LSTM regression from NinaPro EMG windows to CyberGlove kinematics, rest removed."
+
+seed: 42
+
+data:
+  path: "../../shared/NinaProData"  # relative to this folder; searched recursively for .mat files
+  subjects: null                    # list like [1, 2, 3], or null for all found
+  exercises: null                   # list like [1], or null for all found
+  downsample: 1                     # block-average factor: 1 for DB1 (100 Hz), ~20 for DB2 (2 kHz)
+  val_reps: [3]
+  test_reps: [2, 5]
+  window: 20                        # samples per input window
+  stride: 5                         # train window stride
+  eval_stride: 1                    # val/test window stride
+
+model:
+  name: "lstm"
+  hidden_size: 128
+  num_layers: 2
+  dropout: 0.2
+  bidirectional: false
+
+train:
+  lr: 0.001
+  epochs: 30
+  batch_size: 256
+  weight_decay: 0.0001
+  grad_clip: 1.0
+  patience: 5        # early stopping on val loss
+  device: "auto"     # auto picks cuda, then mps, then cpu
+  num_workers: 0
